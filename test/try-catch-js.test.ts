@@ -19,16 +19,6 @@ describe('tryAsync (with Promise)', () => {
     expect(result.value).toBeInstanceOf(Error);
     expect(result.value).toHaveProperty('message', 'Nice error');
   });
-
-  it('should return an empty error from a rejected promise', async () => {
-    const promise = async () => {
-      throw undefined; //eslint-disable-line
-    };
-    const result = await tryAsync<any, undefined>(promise());
-
-    expect(result.caught).toBe(true);
-    expect(result.value).toBe(undefined);
-  });
 });
 
 describe('tryAsync (with async func)', () => {
@@ -49,16 +39,6 @@ describe('tryAsync (with async func)', () => {
     expect(result.caught).toBe(true);
     expect(result.value).toBeInstanceOf(Error);
     expect(result.value).toHaveProperty('message', 'Nice error');
-  });
-
-  it('should return an empty error from a rejected promise', async () => {
-    const promise = async () => {
-      throw undefined; //eslint-disable-line
-    };
-    const result = await tryAsync<any, undefined>(promise);
-
-    expect(result.caught).toBe(true);
-    expect(result.value).toBe(undefined);
   });
 });
 
